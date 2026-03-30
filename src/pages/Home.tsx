@@ -1,4 +1,5 @@
 import Header from "../components/common/Header"
+import Footer from "../components/common/Footer"
 
 import { formatNumber } from "../utils/format"
 
@@ -10,6 +11,7 @@ export default function Home() {
         <Header />
       <div>Book Store</div>
       <div>dount: {formatNumber(COUNT)}</div>
+      <Footer />
     </div>
   )
 }
