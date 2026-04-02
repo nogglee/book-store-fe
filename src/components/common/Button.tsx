@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
-import type { ButtonSize, ButtonScheme, Theme } from '../../style/theme';
+import type { ButtonSize, ButtonScheme } from '../../style/theme';
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     size: ButtonSize;
     scheme: ButtonScheme;
-    disabled: boolean;
-    isLoading: boolean;
+    disabled?: boolean;
+    isLoading?: boolean;
 }
 
 function Button({ children, size, scheme, disabled, isLoading }: Props) {
@@ -22,7 +22,7 @@ function Button({ children, size, scheme, disabled, isLoading }: Props) {
     )
 }
 
-const ButtonStyled = styled.button<Omit<Props, 'children'> & { theme: Theme }>`
+const ButtonStyled = styled.button<Omit<Props, 'children'>>`
     font-size: ${({ theme, size }) => theme.button[size].fontSize };
     padding: ${({ theme, size }) => theme.button[size].padding };
     color: ${({ theme, scheme }) => theme.buttonScheme[scheme].color };

@@ -1,7 +1,6 @@
 import React from 'react'
 import logo from '../../assets/logo.png'
 import styled from 'styled-components'
-import type { Theme } from '../../style/theme'
 
 const Footer: React.FC = () => {
   return (
@@ -16,7 +15,7 @@ const Footer: React.FC = () => {
   )
 }
 
-const FooterStyle = styled.footer<{theme: Theme}>`
+const FooterStyle = styled.footer`
   width: 100%;
   margin: 0 auto;
   max-width: ${({theme}) => theme.layout.width.large};

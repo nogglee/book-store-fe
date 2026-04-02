@@ -5,6 +5,10 @@ export type ButtonSize = 'large' | 'medium' | 'small';
 export type ButtonScheme = 'primary' | 'normal';
 export type LayoutWidth = 'small' | 'medium' | 'large';
 
+declare module 'styled-components' {
+  export interface DefaultTheme extends Theme {}
+}
+
 export interface Theme {
     name: ThemeName;
     color: Record<ColorKey, string>;
