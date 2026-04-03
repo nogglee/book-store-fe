@@ -11,7 +11,7 @@ import { useAuthStore } from "../store/authStore";
 export default function Signup() {
     const navigate = useNavigate();
     const { showAlert } = useAlert();
-    const { isLoggedIn, storeLogin, storeLogout } = useAuthStore();
+    const { storeLogin } = useAuthStore();
 
     const {
         register,

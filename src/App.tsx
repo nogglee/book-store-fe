@@ -21,12 +21,16 @@ const router = createBrowserRouter([
     element: <Layout><Pages.ResetPassword /></Layout>
   },
   {
-    path: '/login',
+    path: '/signin',
     element: <Layout><Pages.Signin /></Layout>
   },
   {
     path: '/books',
     element: <Layout><Pages.Books /></Layout>
+  },
+  {
+    path: '/books/:bookId',
+    element: <Layout><Pages.BookDetail /></Layout>
   },
 ])
 

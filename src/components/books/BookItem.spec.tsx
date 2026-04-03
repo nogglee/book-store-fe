@@ -24,7 +24,7 @@ describe("BookItem", () => {
     it("렌더 여부", () => {
         const { getByText, getByAltText } = render(
             <BookStoreThemeProvider>
-                <BookItem book={dummyBook} />
+                <BookItem book={dummyBook} view="list" />
             </BookStoreThemeProvider>
         )
         expect(getByAltText(dummyBook.title)).toHaveAttribute('src', `https://picsum.photos/id/${dummyBook.img}/600/600`);

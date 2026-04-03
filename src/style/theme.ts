@@ -2,7 +2,7 @@ export type ThemeName = 'light' | 'dark';
 export type ColorKey = 'primary' | 'secondary' | 'third' | 'background' | 'border' | 'text';
 export type HeadingSize = 'large' | 'medium' | 'small';
 export type ButtonSize = 'large' | 'medium' | 'small';
-export type ButtonScheme = 'primary' | 'normal';
+export type ButtonScheme = 'primary' | 'normal' | 'like';
 export type LayoutWidth = 'small' | 'medium' | 'large';
 
 declare module 'styled-components' {
@@ -41,7 +41,8 @@ export const light: Theme = {
     },
     buttonScheme: {
         primary: { color: 'white', backgroundColor: 'midnightblue' },
-        normal: { color: 'black', backgroundColor: 'lightgray' }
+        normal: { color: 'black', backgroundColor: 'lightgray' },
+        like: { color: 'white', backgroundColor: 'coral' }
     },
     borderRadius: { default: '4px' },
     layout: {

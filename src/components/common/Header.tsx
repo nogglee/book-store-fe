@@ -36,7 +36,7 @@ export default function Header() {
         )}
         {!isLoggedIn && (
           <ul>
-            <li><Link to="/login"><FaSignInAlt />로그인</Link></li>
+            <li><Link to="/signin"><FaSignInAlt />로그인</Link></li>
             <li><Link to="/signup"><FaRegUser />회원가입</Link></li>
           </ul>
         )}

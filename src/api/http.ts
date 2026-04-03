@@ -5,6 +5,7 @@ const BASE_URL = "http://localhost:9999";
 const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
+    
     const axiosInstance = axios.create({
         baseURL: BASE_URL,
         timeout: DEFAULT_TIMEOUT,
@@ -22,7 +23,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
         },
         (error) => {
             // 토큰 만료
-            if(error.response.status === 401) {
+            if(error.response?.status === 401) {
                 removeToken();
                 window.location.href = '/signin';
             }

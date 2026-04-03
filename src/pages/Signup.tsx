@@ -25,6 +25,8 @@ export default function Signup() {
 
     const onSubmit = (data: SignupProps) => {
         signup(data).then((res) => {
+            console.log(res);
+            
             showAlert('회원 가입이 완료되었습니다.');
             navigate('/login');
         })
