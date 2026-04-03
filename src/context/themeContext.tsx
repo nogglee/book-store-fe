@@ -4,7 +4,7 @@ import type { ThemeName } from "../style/theme";
 import { getTheme } from '../style/theme';
 import { GlobalStyle } from "../style/global";
 
-const DEFAULT_THEME_NAME: ThemeName = 'dark';
+const DEFAULT_THEME_NAME: ThemeName = 'light';
 const THEME_LOCAL_STORAGE_KEY = 'book-store-theme';
 
 interface State {

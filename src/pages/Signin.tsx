@@ -1,21 +1,17 @@
-import styled from "styled-components";
+import { SignupStyle, type SignupProps } from "./Signup";
 import Title from "../components/common/Title";
 import InputText from "../components/common/Input";
 import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { signup } from "../api/auth.api";
+import { signin } from "../api/auth.api";
 import { useAlert } from "../hooks/useAlert";
-
-export interface SignupProps {
-    email: string;
-    name: string;
-    password: string;
-}
+import { useAuthStore } from "../store/authStore";
 
 export default function Signup() {
     const navigate = useNavigate();
     const { showAlert } = useAlert();
+    const { isLoggedIn, storeLogin, storeLogout } = useAuthStore();
 
     const {
         register,
@@ -24,15 +20,23 @@ export default function Signup() {
     } = useForm<SignupProps>();
 
     const onSubmit = (data: SignupProps) => {
-        signup(data).then((res) => {
-            showAlert('회원 가입이 완료되었습니다.');
-            navigate('/login');
+        signin(data)
+        .then((res) => {
+            storeLogin(res.token);
+            
+            console.log(res.token)
+            showAlert('로그인이 완료되었습니다.');
+            navigate('/');
+        })
+        .catch((err) => {
+            console.log(err)
+            showAlert('로그인에 실패했습니다.');
         })
     }
     
     return (
         <>
-            <Title size='large'>회원가입</Title>
+            <Title size='large'>로그인</Title>
             <SignupStyle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset>
@@ -42,14 +46,6 @@ export default function Signup() {
                             {...register('email', { required: true })}
                         />
                         {errors.email && <p className="error-text">이메일을 입력해 주세요.</p>}
-                    </fieldset>
-                    <fieldset>
-                        <InputText 
-                            inputType="text" 
-                            placeholder="이름" 
-                            {...register('name', { required: true })}
-                        />
-                        {errors.name && <p className="error-text">이름을 입력해 주세요.</p>}
                     </fieldset>
                     <fieldset>
                         <InputText 
@@ -65,40 +61,14 @@ export default function Signup() {
                             size="medium" 
                             scheme="primary" 
                         >
-                            회원가입
+                            로그인
                         </Button>
                     </fieldset>
                     <div className="info">
-                        <Link to='/reset'>비밀번호 초기화</Link>
+                        <Link to='/reset'>비밀번호 재설정</Link>
                     </div>
                 </form>
             </SignupStyle>
         </>
     );
 }
-
-export const SignupStyle = styled.div`
-  max-width: ${({ theme }) => theme.layout.width.small};
-  margin: 80px auto;
-
-  fieldset {
-    border: 0;
-    padding: 0 0 8px 0;
-    .error-text {
-      color: red;
-    }
-  }
-
-  input {
-    width: 100%;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  .info {
-    text-align: center;
-    margin-top: 1rem;
-  }
-`;

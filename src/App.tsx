@@ -4,9 +4,7 @@ import Layout from './components/layout/Layout'
 import { BookStoreThemeProvider } from './context/themeContext'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from './components/common/Error'
-import Signup from './pages/Signup'
-import Login from './pages/Login'
-import Books from './pages/Books'
+import * as Pages from './pages'
 
 const router = createBrowserRouter([
   {
@@ -16,15 +14,19 @@ const router = createBrowserRouter([
   },
   {
     path: '/signup',
-    element: <Layout><Signup /></Layout>
+    element: <Layout><Pages.Signup /></Layout>
+  },
+  {
+    path: '/reset',
+    element: <Layout><Pages.ResetPassword /></Layout>
   },
   {
     path: '/login',
-    element: <Layout><Login /></Layout>
+    element: <Layout><Pages.Signin /></Layout>
   },
   {
     path: '/books',
-    element: <Layout><Books /></Layout>
+    element: <Layout><Pages.Books /></Layout>
   },
 ])
 

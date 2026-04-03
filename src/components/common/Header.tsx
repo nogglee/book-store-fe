@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import logo from '../../assets/logo.png';
-import { FaSignInAlt, FaRegUser } from 'react-icons/fa';
+import { FaSignInAlt, FaRegUser, FaSignOutAlt, FaShoppingCart, FaReceipt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useCategory } from '../../hooks/useCategory';
+import { useAuthStore } from '../../store/authStore';
 
 export default function Header() {
 
   const { category } = useCategory();
+  const { isLoggedIn, storeLogout } = useAuthStore();
 
   return (
     <HeaderStyle>
@@ -18,17 +20,26 @@ export default function Header() {
           {
             category.map((item) => (
               <li key={item.id}>
-                <Link to={`${item.id === null ? '/books' : `/books?category_id=${item.id}`}`}>{item.name}</Link>
+                <Link to={`${item.id === null ? '/books' : `/books?category_id=${item.id}`}`}>{item.categoryName}</Link>
               </li>
             ))
           }
         </ul>
       </nav>
       <nav className='auth'>
+        {isLoggedIn && (
           <ul>
-            <li><Link to="/login"><FaSignInAlt /> 로그인</Link></li>
-            <li><Link to="/signup"><FaRegUser /> 회원가입</Link></li>
+            <li><Link to="/cart"><FaShoppingCart />장바구니</Link></li>
+            <li><Link to="/orderlist"><FaReceipt />주문내역</Link></li>
+            <li><button onClick={storeLogout}><FaSignOutAlt />로그아웃</button></li>
           </ul>
+        )}
+        {!isLoggedIn && (
+          <ul>
+            <li><Link to="/login"><FaSignInAlt />로그인</Link></li>
+            <li><Link to="/signup"><FaRegUser />회원가입</Link></li>
+          </ul>
+        )}
       </nav>
     </HeaderStyle>
   )
