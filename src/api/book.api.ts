@@ -1,5 +1,5 @@
 import type { Book } from "../models/book.model";
-import type { Pagination } from "../models/pagination.model";
+import type { Pagination as IPagination } from "../models/pagination.model";
 import { httpClient } from "./http";
 
 interface FetchBooksParams {
@@ -11,7 +11,7 @@ interface FetchBooksParams {
 
 interface FetchBooksResponse {
     books: Book[];
-    pagination: Pagination;
+    pagination: IPagination;
 }
 
 export const fetchBooks = async (params: FetchBooksParams) => {
